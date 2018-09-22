@@ -1,6 +1,7 @@
 var tf = require('@tensorflow/tfjs');
 var tfnode = require('@tensorflow/tfjs-node');
 var WebCamera = require("webcamjs");
+var Canvas = require('canvas');
 
 // Loads mobilenet and returns a model that returns the internal activation
 // we'll use as input to our classifier model.
@@ -19,15 +20,30 @@ WebCamera.set({
 	image_format: 'jpeg',
 	jpeg_quality: 90
 });
+
+
 module.exports = {
   up: function(){
     WebCamera.snap(function(data_uri) {
-      tf.fromPixels(data_uri).print();
+      const canvas = new Canvas();
+      const ctx = canvas.getContext("2d");
+      const width = 224;
+      const height = 224;
+
+      const image = new Image;
+      image.src = data_uri;
+      image.onload = () => {
+        ctx.drawImage(image, 100, 100);
+        var imageData = ctx.getImageData(0, 0, 224, 224);
+        console.log(imageData);
+      }
+      
+      tf.fromPixels(imageData).print();
     });
   },
 
   go : function() {
-    
+
   }
 }
 
