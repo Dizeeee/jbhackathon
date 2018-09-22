@@ -1,7 +1,6 @@
 var tf = require('@tensorflow/tfjs');
 var tfnode = require('@tensorflow/tfjs-node');
 var WebCamera = require("webcamjs");
-var Canvas = require('canvas');
 
 // Loads mobilenet and returns a model that returns the internal activation
 // we'll use as input to our classifier model.
@@ -25,7 +24,7 @@ WebCamera.set({
 module.exports = {
   up: function(){
     WebCamera.snap(function(data_uri) {
-      const canvas = new Canvas();
+      const canvas = document.querySelector("canvas");
       const ctx = canvas.getContext("2d");
       const width = 224;
       const height = 224;
@@ -33,17 +32,36 @@ module.exports = {
       const image = new Image;
       image.src = data_uri;
       image.onload = () => {
-        ctx.drawImage(image, 100, 100);
+        ctx.drawImage(image, 1000, 1000);
         var imageData = ctx.getImageData(0, 0, 224, 224);
         console.log(imageData);
       }
+      tf.tidy(() => {
+        tf.fromPixels(canvas).print();
+      })
       
-      tf.fromPixels(imageData).print();
     });
   },
 
   go : function() {
-
+    addExample(example, label) {
+      const y = tf.tidy(() => tf.oneHot(tf.tensor1d([label]), this.numClasses));
+    
+      if (this.xs == null) {
+        this.xs = tf.keep(example);
+        this.ys = tf.keep(y);
+      } else {
+        const oldX = this.xs;
+        this.xs = tf.keep(oldX.concat(example, 0));
+    
+        const oldY = this.ys;
+        this.ys = tf.keep(oldY.concat(y, 0));
+    
+        oldX.dispose();
+        oldY.dispose();
+        y.dispose();
+      }
+    }
   }
 }
 
