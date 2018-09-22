@@ -200,31 +200,38 @@ function Controller(model){
 	document.addEventListener("keydown", function(event){self.keyDown(event);},false);
 }
 
-Controller.prototype.keyDown = function(event){
+key_right = false;
+key_left = false;
+key_up = false;
+key_down = false;
 
+Controller.prototype.keyDown = function(event){
+	/*
 	if(event.keyCode == 39) this.key_right = true;
 	else if(event.keyCode == 37) this.key_left = true;
 	else if(event.keyCode == 38) this.key_up = true;
-	else if(event.keyCode == 40)this.key_down = true;
+	else if(event.keyCode == 40)this.key_down = true;*/
 }
 
 Controller.prototype.update = function(){
 
-	if(this.key_right){
+	if(key_right){
 		this.model.setMove('r');
-		this.key_right = false;
+		key_right = false;
 	}
-	if(this.key_left){
+
+	if(key_left){
+
 		this.model.setMove('l');
-		this.key_left = false;
+		key_left = false;
 	}
-	if(this.key_up){
+	if(key_up){
 		this.model.setMove('u');
-		this.key_up = false;
+		key_up = false;
 	}
-	if(this.key_down){
+	if(key_down){
 		this.model.setMove('d');
-		this.key_down = false;
+		key_down = false;
 	}
 }
 
@@ -351,10 +358,140 @@ let timer = setInterval(function(){game.onTimer();},40);
 
       imageData = context.getImageData(0, 0, 150,120);
       colors = imageData.data;
+      found = false;
+      for(var i = 0, n = colors.length; i < n; i+=4){
+      			foundTol = false;
+      			foundRange = false;
+      			if(colors[i] >= (colors[i+1]-10) && colors[i] >= (colors[i+2]-10) &&
+      			   colors[i] <= (colors[i+1]+10) && colors[i] <= (colors[i+2]+10)){
+      				foundTol = true;
+      				}
+      			if(colors[i+2] >= colors[i]-10 && colors[i+2] >= colors[i+3]-10 &&
+      			   colors[i+2] <= colors[i]+10 && colors[i+2] <= colors[i+3]+10){
+      				foundTol = true;
+      				}
 
-      for(var i = 0, n = colors.length; i < n; i++)
-      		colors[i] = 255-colors[i];
-      context.putImageData(imageData, 0, 0)
+      			if(colors[i+3] >= colors[i+2]-10 && colors[i+3] >= colors[i]-10 &&
+      			   colors[i+3] <= colors[i+2]+10 && colors[i+3] <= colors[i+1]+10){
+      				foundTol=true;
+      			
+      			}
+      				
+				if(colors[i] > 20 && colors[i] < 55){
+					foundRange = true;
+				
+				}
+				if(colors[i+1] > 20 && colors[i+1] < 55){
+					foundRange = true;
+					
+				}
+				if(colors[i+2] > 20 && colors[i+2] < 55){
+					foundRange = true;
+				
+				if(foundRange)
+					if(foundTol){
+						found = true;
+						break;					
+					}
+				}
+      }
+      if(found){
+      	this.key_left = true;
+      	return;
+      }
+
+
+      imgData = context.getImageData(150, 120, 320, 120);
+      colors = imgData.data;
+      found = false;
+      for(var i = 0, n = colors.length; i < n; i+=4){
+      			foundTol = false;
+      			foundRange = false;
+      			if(colors[i] >= (colors[i+1]-10) && colors[i] >= (colors[i+2]-10) &&
+      			   colors[i] <= (colors[i+1]+10) && colors[i] <= (colors[i+2]+10)){
+      				foundTol = true;
+      				}
+      			if(colors[i+2] >= colors[i]-10 && colors[i+2] >= colors[i+3]-10 &&
+      			   colors[i+2] <= colors[i]+10 && colors[i+2] <= colors[i+3]+10){
+      				foundTol = true;
+      				}
+
+      			if(colors[i+3] >= colors[i+2]-10 && colors[i+3] >= colors[i]-10 &&
+      			   colors[i+3] <= colors[i+2]+10 && colors[i+3] <= colors[i+1]+10){
+      				foundTol=true;
+      			
+      			}
+      				
+				if(colors[i] > 20 && colors[i] < 55){
+					foundRange = true;
+				
+				}
+				if(colors[i+1] > 20 && colors[i+1] < 55){
+					foundRange = true;
+					
+				}
+				if(colors[i+2] > 20 && colors[i+2] < 55){
+					foundRange = true;
+				
+				if(foundRange)
+					if(foundTol){
+						found = true;
+						break;					
+					}
+				}
+      }
+      if(found){
+      	this.key_right = true;
+      	return;
+      }
+
+      imData = context.getImageData(0, 240, 150, 240);
+      colors = imData.data;
+      found = false;
+      for(var i = 0, n = colors.length; i < n; i+=4){
+      			foundTol = false;
+      			foundRange = false;
+      			if(colors[i] >= (colors[i+1]-10) && colors[i] >= (colors[i+2]-10) &&
+      			   colors[i] <= (colors[i+1]+10) && colors[i] <= (colors[i+2]+10)){
+      				foundTol = true;
+      				}
+      			if(colors[i+2] >= colors[i]-10 && colors[i+2] >= colors[i+3]-10 &&
+      			   colors[i+2] <= colors[i]+10 && colors[i+2] <= colors[i+3]+10){
+      				foundTol = true;
+      				}
+
+      			if(colors[i+3] >= colors[i+2]-10 && colors[i+3] >= colors[i]-10 &&
+      			   colors[i+3] <= colors[i+2]+10 && colors[i+3] <= colors[i+1]+10){
+      				foundTol=true;
+      			
+      			}
+      				
+				if(colors[i] > 20 && colors[i] < 55){
+					foundRange = true;
+				
+				}
+				if(colors[i+1] > 20 && colors[i+1] < 55){
+					foundRange = true;
+					
+				}
+				if(colors[i+2] > 20 && colors[i+2] < 55){
+					foundRange = true;
+				
+				if(foundRange)
+					if(foundTol){
+						found = true;
+						break;					
+					}
+				}
+      }
+      alert(found);
+      if(found){
+      	this.key_up = true;
+      	return;
+      }
+
+
+     // context.putImageData(imageData, 0, 0)
     } else {
       clearphoto();
     }
