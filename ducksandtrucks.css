@@ -1,0 +1,18 @@
+#gameBoard{
+	background-color: blue;
+}
+#webcam{
+	background-color: red;
+}
+#score{
+	background-color: purple;
+
+}
+
+/*classes*/
+.holder{
+	display:inline-grid;
+	grid-template-columns: auto auto auto;
+}
+.grid-item{
+}
