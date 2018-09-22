@@ -5,7 +5,7 @@ const {BrowserWindow} = require('electron');
 
 app.on('ready', function() {
   var mainWindow = new BrowserWindow({
-    title: 'EmuLadder',
+    title: 'Ducks and Trucks',
     backgroundColor: '#000',
     width: 800,
     height: 600,

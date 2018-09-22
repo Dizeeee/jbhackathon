@@ -5,7 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="ducksandtrucks.css"/>
 	</head>
 	<body>
-
+		<input type="button" id="start" value="Start / Shut down camera" />
 		<div id="Main" class="main">
 
 			<div class="game">
@@ -13,15 +13,39 @@
 				<canvas id="gameBoard" width="900" height="600"></canvas>
 			</div>
 			<div class="info">
-				<div class="webcam">
-					<canvas id="webcam" width="300" height="300"></canvas>
+				<div class="webcam" id="videoElement">
+					
 				</div>
 				<div class="score">
 					<canvas id="score" width="300" height="300"></canvas>
 				</div>
 			</div>
 		</div>
+		<script>
+		    // A flag to know when start or stop the camera
+			var enabled = true;
+    		// Use require to add webcamjs
+			var WebCamera = require("webcamjs");
+			WebCamera.set({
+				width: 224,
+				height: 224,
+				image_format: 'jpeg',
+				jpeg_quality: 90
+			});
+
+    		document.getElementById("start").addEventListener('click', function() {
+        		if (!enabled) { // Start the camera !
+            		enabled = true;
+					WebCamera.attach('#videoElement');
+					console.log("The camera has been started");
+				} else { // Disable the camera !
+					enabled = false;
+					WebCamera.reset();
+					console.log("The camera has been disabled");
+				}
+			}, false);
+		</script>
 		<script type="text/javascript" src="ducksandtrucks.js"></script>
-		<!-- <script type="text/javascript" src="cam.js"></script> -->
+		<script type="text/javascript" src="cam.js"></script>
 	</body>
 </html>
