@@ -1,3 +1,24 @@
+body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+
+	background-color: black;
+}
+
+.main {
+	display: grid;
+	grid-row: 1/2;
+}
+
+.game {
+	grid-column: 1;
+}
+
+.info {
+	grid-column: 2;
+}
+
 #gameBoard{
 	background-color: blue;
 }
@@ -7,12 +28,4 @@
 #score{
 	background-color: purple;
 
-}
-
-/*classes*/
-.holder{
-	display:inline-grid;
-	grid-template-columns: auto auto auto;
-}
-.grid-item{
 }

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 function Model(){
 
 	let sprites = [];
@@ -68,3 +69,6 @@ Game.prototype.onTimer = function(){
 
 let game = new Game();
 let timer = setInterval(function(){game.onTimer();},40);
+=======
+// alert("Connected");
+>>>>>>> Stashed changes
