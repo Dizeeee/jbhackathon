@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Dizeeee/jbhackathon/issues"
   },
-  "homepage": "https://github.com/Dizeeee/jbhackathon#readme"
+  "homepage": "https://github.com/Dizeeee/jbhackathon#readme",
+  "dependencies": {
+    "electron": "^3.0.0"
+  }
 }

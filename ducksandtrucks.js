@@ -1,30 +1,34 @@
 let canvas = document.getElementById("gameBoard");
 let context = canvas.getContext("2d");
-base = new Image();
-base.src = "duck.png";
-base.onLoad = function(){
-	context.drawImage(base, 0, 0);}
+
 
 function Model(){
 
-	let sprites = [];
-	this.moveDir = null;
+	sprites = [];
+	moveDir = null;
+	x = 10;
+	y = 520;
 
-
-	/*base = new Image();
-	base.src = "img/duck.png";
-	base.onLoad = function(){
-		context.drawImage(base, 0, 0);
-	}*/
+	base = new Image();
+	base.src = "duck_facing_up.png";
+	base.onload = function(){
+		context.drawImage(base, x, y);
+	}
 
 }
 
 Model.prototype.update = function(){
+	if(this.moveDir != null)
+		this.moveDuck();
+		this.moveDir = null;
+	}
 
 
+Model.prototype.moveDuck = function(){
+	context.drawImage(base, x, (y-10));
 }
 
-Model.prototype.move = function(direction){
+Model.prototype.setMove = function(direction){
 
 	this.moveDir = direction;
 }
@@ -51,19 +55,19 @@ Controller.prototype.keyDown = function(event){
 Controller.prototype.update = function(){
 
 	if(this.key_right){
-		this.model.move('r');
+		this.model.setMove('r');
 		this.key_right = false;
 	}
 	if(this.key_left){
-		this.model.move('l');
+		this.model.setMove('l');
 		this.key_left = false;
 	}
 	if(this.key_up){
-		this.model.move('u');
+		this.model.setMove('u');
 		this.key_up = false;
 	}
 	if(this.key_down){
-		this.model.move('d');
+		this.model.setMove('d');
 		this.key_down = false;
 	}
 }
