@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/Dizeeee/jbhackathon#readme",
   "dependencies": {
-    "electron": "^3.0.0"
+    "electron": "^3.0.0",
+    "@tensorflow/tfjs": "^0.13.0",
+    "@tensorflow/tfjs-node": "^0.1.17",
+    "webcamjs": "^1.0.25"
   }
 }
