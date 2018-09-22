@@ -356,53 +356,8 @@ let timer = setInterval(function(){game.onTimer();},40);
       var data = canvas.toDataURL('image/png');
       photo.setAttribute('src', data);
 
-      imageData = context.getImageData(0, 0, 150,120);
+      imageData = context.getImageData(0, 0, 200,150);
       colors = imageData.data;
-      found = false;
-      for(var i = 0, n = colors.length; i < n; i+=4){
-      			foundTol = false;
-      			foundRange = false;
-      			if(colors[i] >= (colors[i+1]-10) && colors[i] >= (colors[i+2]-10) &&
-      			   colors[i] <= (colors[i+1]+10) && colors[i] <= (colors[i+2]+10)){
-      				foundTol = true;
-      				}
-      			if(colors[i+2] >= colors[i]-10 && colors[i+2] >= colors[i+3]-10 &&
-      			   colors[i+2] <= colors[i]+10 && colors[i+2] <= colors[i+3]+10){
-      				foundTol = true;
-      				}
-
-      			if(colors[i+3] >= colors[i+2]-10 && colors[i+3] >= colors[i]-10 &&
-      			   colors[i+3] <= colors[i+2]+10 && colors[i+3] <= colors[i+1]+10){
-      				foundTol=true;
-      			
-      			}
-      				
-				if(colors[i] > 20 && colors[i] < 55){
-					foundRange = true;
-				
-				}
-				if(colors[i+1] > 20 && colors[i+1] < 55){
-					foundRange = true;
-					
-				}
-				if(colors[i+2] > 20 && colors[i+2] < 55){
-					foundRange = true;
-				
-				if(foundRange)
-					if(foundTol){
-						found = true;
-						break;					
-					}
-				}
-      }
-      if(found){
-      	this.key_left = true;
-      	return;
-      }
-
-
-      imgData = context.getImageData(150, 120, 320, 120);
-      colors = imgData.data;
       found = false;
       for(var i = 0, n = colors.length; i < n; i+=4){
       			foundTol = false;
@@ -445,7 +400,52 @@ let timer = setInterval(function(){game.onTimer();},40);
       	return;
       }
 
-      imData = context.getImageData(0, 240, 150, 240);
+
+      imgData = context.getImageData(200, 0, 400, 150);
+      colors = imgData.data;
+      found = false;
+      for(var i = 0, n = colors.length; i < n; i+=4){
+      			foundTol = false;
+      			foundRange = false;
+      			if(colors[i] >= (colors[i+1]-10) && colors[i] >= (colors[i+2]-10) &&
+      			   colors[i] <= (colors[i+1]+10) && colors[i] <= (colors[i+2]+10)){
+      				foundTol = true;
+      				}
+      			if(colors[i+2] >= colors[i]-10 && colors[i+2] >= colors[i+3]-10 &&
+      			   colors[i+2] <= colors[i]+10 && colors[i+2] <= colors[i+3]+10){
+      				foundTol = true;
+      				}
+
+      			if(colors[i+3] >= colors[i+2]-10 && colors[i+3] >= colors[i]-10 &&
+      			   colors[i+3] <= colors[i+2]+10 && colors[i+3] <= colors[i+1]+10){
+      				foundTol=true;
+      			
+      			}
+      				
+				if(colors[i] > 20 && colors[i] < 55){
+					foundRange = true;
+				
+				}
+				if(colors[i+1] > 20 && colors[i+1] < 55){
+					foundRange = true;
+					
+				}
+				if(colors[i+2] > 20 && colors[i+2] < 55){
+					foundRange = true;
+				
+				if(foundRange)
+					if(foundTol){
+						found = true;
+						break;					
+					}
+				}
+      }
+      if(found){
+      	this.key_left = true;
+      	return;
+      }
+
+      imData = context.getImageData(0, 150, 200, 300);
       colors = imData.data;
       found = false;
       for(var i = 0, n = colors.length; i < n; i+=4){
@@ -484,11 +484,57 @@ let timer = setInterval(function(){game.onTimer();},40);
 					}
 				}
       }
-      alert(found);
+      if(found){
+      	this.key_down = true;
+      	return;
+      }
+
+
+      iData = context.getImageData(200, 150, 400, 300);
+      colors = iData.data;
+      found = false;
+      for(var i = 0, n = colors.length; i < n; i+=4){
+      			foundTol = false;
+      			foundRange = false;
+      			if(colors[i] >= (colors[i+1]-10) && colors[i] >= (colors[i+2]-10) &&
+      			   colors[i] <= (colors[i+1]+10) && colors[i] <= (colors[i+2]+10)){
+      				foundTol = true;
+      				}
+      			if(colors[i+2] >= colors[i]-10 && colors[i+2] >= colors[i+3]-10 &&
+      			   colors[i+2] <= colors[i]+10 && colors[i+2] <= colors[i+3]+10){
+      				foundTol = true;
+      				}
+
+      			if(colors[i+3] >= colors[i+2]-10 && colors[i+3] >= colors[i]-10 &&
+      			   colors[i+3] <= colors[i+2]+10 && colors[i+3] <= colors[i+1]+10){
+      				foundTol=true;
+      			
+      			}
+      				
+				if(colors[i] > 20 && colors[i] < 55){
+					foundRange = true;
+				
+				}
+				if(colors[i+1] > 20 && colors[i+1] < 55){
+					foundRange = true;
+					
+				}
+				if(colors[i+2] > 20 && colors[i+2] < 55){
+					foundRange = true;
+				
+				if(foundRange)
+					if(foundTol){
+						found = true;
+						break;					
+					}
+				}
+      }
       if(found){
       	this.key_up = true;
       	return;
       }
+
+
 
 
      // context.putImageData(imageData, 0, 0)
