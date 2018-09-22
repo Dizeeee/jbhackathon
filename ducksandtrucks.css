@@ -13,10 +13,19 @@ body {
 
 .game {
 	grid-column: 1;
+		
 }
 
 .info {
 	grid-column: 2;
+	position: fixed;
+	bottom: 0px;
+	right: px;
+	top:21px;
+    left: 900px;
+    
+	
+   
 }
 
 #gameBoard{
