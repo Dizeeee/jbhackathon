@@ -3,6 +3,7 @@
 	<head>
 		<title>Ducks and Trucks</title>
 		<link rel="stylesheet" type="text/css" href="ducksandtrucks.css"/>
+		<script src="./tracking/build/tracking-min.js"></script>
 	</head>
 	<body>
 		<div id="Main" class="main">
@@ -12,8 +13,8 @@
 				<canvas id="gameBoard" width="900" height="600"></canvas>
 			</div>
 			<div class="info">
-				<div class="webcam" id="videoElement">
-						<video id="myVideo" width="300" height="300" preload autoplay loop muted></video>
+				<div class="cam">
+						<video id="video" width="300" height="300" preload autoplay loop muted></video>
 				</div>
 				<div class="score">
 					<canvas id="score" width="300" height="300"></canvas>
@@ -21,10 +22,8 @@
 			</div>
 		</div>
 
-		<script src="./tracking/build/tracking-min.js"></script>
 		<script>
-			var colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
-		
+			let colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
 			colors.on('track', function(event) {
 			if (event.data.length === 0) {
 				// No colors were detected in this frame.
@@ -35,7 +34,7 @@
 			}
 			});
 		
-			tracking.track('#myVideo', colors);
+			tracking.track('#video', colors);
 		</script>
 		<script type="text/javascript" src="ducksandtrucks.js"></script>
 	</body>
