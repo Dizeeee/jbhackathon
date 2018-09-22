@@ -1,15 +1,6 @@
 var tf = require('@tensorflow/tfjs');
 var tfnode = require('@tensorflow/tfjs-node');
 var WebCamera = require("webcamjs");
-WebCamera.set({
-	width: 224,
-	height: 224,
-	image_format: 'jpeg',
-	jpeg_quality: 90
-});
-
-let mobilenet;
-let model;
 
 // Loads mobilenet and returns a model that returns the internal activation
 // we'll use as input to our classifier model.
@@ -21,3 +12,27 @@ async function loadMobilenet() {
   const layer = mobilenet.getLayer('conv_pw_13_relu');
   return tf.model({inputs: mobilenet.inputs, outputs: layer.output});
 }
+
+WebCamera.set({
+	width: 224,
+	height: 224,
+	image_format: 'jpeg',
+	jpeg_quality: 90
+});
+module.exports = {
+  up: function(){
+    WebCamera.snap(function(data_uri) {
+      tf.fromPixels(data_uri).print();
+    });
+  },
+
+  go : function() {
+    
+  }
+}
+
+
+let mobilenet;
+let model;
+
+

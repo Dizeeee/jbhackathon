@@ -21,6 +21,23 @@
 				</div>
 			</div>
 		</div>
+		<input type="button" id="up" value="Up"/>
+		<script>
+			var cam = require('./cam.js');
+			document.getElementById("up").addEventListener('click', function() {
+				cam.up();
+			}, false);
+		</script>
+		<input type="button" id="down" value="Down"/>
+		<input type="button" id="left" value="Left"/>
+		<input type="button" id="right" value="Right"/>
+		<input type="button" id="go" value="Go"/>
+		<script>
+			var cam = require('./cam.js');
+			document.getElementById("go").addEventListener('click', function() {
+				cam.done();
+			}, false);
+		</script>
 		<script>
 		    // A flag to know when start or stop the camera
 			var enabled = false;
