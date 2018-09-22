@@ -3,25 +3,40 @@
 	<head>
 		<title>Ducks and Trucks</title>
 		<link rel="stylesheet" type="text/css" href="ducksandtrucks.css"/>
-		<script src="./tracking/build/tracking-min.js"></script>
+		<!--<script src="./tracking/build/tracking-min.js"></script>-->
 	</head>
 	<body>
 		<div id="Main" class="main">
 
+  <canvas id="canvas">
+  </canvas>
+  <div class="output">
+    <img id="photo" alt="The screen capture will appear in this box.">
+  </div>
+
+			
 			<div class="game">
 
 				<canvas id="gameBoard" width="900" height="600"></canvas>
+			<div class="camera">
+    			<video id="video">Video stream not available.</video>
+    				<button id="startbutton">Take photo</button>
+  			</div>
 			</div>
+			<!--
 			<div class="info">
 				<div class="cam">
 						<video id="video" width="300" height="300" preload autoplay loop muted></video>
 				</div>
 				<div class="score">
-					<canvas id="score" width="300" height="300"></canvas>
+					<canvas id="score" width="300" height="300">
+						
+
+					</canvas>
 				</div>
 			</div>
-		</div>
-
+		</div> 
+		
 		<script>
 			let colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
 			colors.on('track', function(event) {
@@ -35,7 +50,7 @@
 			});
 		
 			tracking.track('#video', colors);
-		</script>
+		</script>-->
 		<script type="text/javascript" src="ducksandtrucks.js"></script>
 	</body>
 </html>

@@ -15,17 +15,19 @@ body {
 	grid-column: 1;
 }
 
-.info {
+#canvas {
 	grid-column: 2;
 	position: fixed;
 	bottom: 0px;
-	right: px;
+	right: 10px;
 	top:21px;
     left: 900px;
     
 	
    
 }
+
+
 
 #gameBoard{
 	background-image: url("highway_map.png");
