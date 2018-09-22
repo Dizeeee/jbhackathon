@@ -6,6 +6,7 @@ function Model(){
 
 	sprites = [];
 	moveDir = null;
+	lives = 5;
 	score = 0;
 	x = 10;
 	y = 520;
@@ -39,12 +40,14 @@ Model.prototype.update = function(){
 	}
 
 		this.updateTrucks();
-		/*
+		
 		for(step = 0; step < 4; step++){
-			if(this.doICollide(step))
-				alert("True");
-		}*/
-		this.doICollide(0);
+			if(this.doICollide(step)){
+				x=10;
+				y=520;
+			}
+				
+		}
 		//this.updateTruck(2);
 		//this.updateTruck(3);
 		//this.updateTruck(4);
@@ -65,6 +68,7 @@ Model.prototype.update = function(){
 		context.drawImage(truck2,tx2,ty2);
 		context.drawImage(truck3,tx3,ty3);
 		context.drawImage(truck4,tx4,ty4);
+			
 
 }
 
@@ -90,18 +94,56 @@ Model.prototype.updateTrucks = function(){
 
 
 Model.prototype.doICollide = function(step){
-	console.log(step);
+
 	if(step == 0){
+
 		if(x+76 < tx1)
 			return false;
 		if(x > tx1+160)
 			return false;
-		if(y+72 > ty1)
+		if(y+72 < ty1)
 			return false;
-		if(y < ty1+42)
+		if(y > ty1+42)
 			return false;
-		else
-			return true;
+		return true;
+	}
+
+		if(step == 1){
+
+		if(x+76 < tx2)
+			return false;
+		if(x > tx2+160)
+			return false;
+		if(y+72 < ty2)
+			return false;
+		if(y > ty2+42)
+			return false;
+		return true;
+	}
+
+		if(step == 2){
+
+		if(x+76 < tx3)
+			return false;
+		if(x > tx3+160)
+			return false;
+		if(y+72 < ty3)
+			return false;
+		if(y > ty3+42)
+			return false;
+		return true;
+	}
+		if(step == 3){
+
+		if(x+76 < tx4)
+			return false;
+		if(x > tx4+160)
+			return false;
+		if(y+72 < ty4)
+			return false;
+		if(y > ty4+42)
+			return false;
+		return true;
 	}
 }
 
