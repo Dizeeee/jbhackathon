@@ -1,8 +1,22 @@
-<<<<<<< Updated upstream
+
+let canvas = document.getElementById("gameBoard");
+let context = canvas.getContext("2d");
+base = new Image();
+base.src = "duck.png";
+base.onLoad = function(){
+	context.drawImage(base, 0, 0);}
+
 function Model(){
 
 	let sprites = [];
 	this.moveDir = null;
+
+
+	/*base = new Image();
+	base.src = "img/duck.png";
+	base.onLoad = function(){
+		context.drawImage(base, 0, 0);
+	}*/
 
 }
 
@@ -14,7 +28,6 @@ Model.prototype.update = function(){
 Model.prototype.move = function(direction){
 
 	this.moveDir = direction;
-	alert(this.moveDir);
 }
 
 function Controller(model){
@@ -29,7 +42,7 @@ function Controller(model){
 }
 
 Controller.prototype.keyDown = function(event){
-	alert(event.keyCode);
+
 	if(event.keyCode == 39) this.key_right = true;
 	else if(event.keyCode == 37) this.key_left = true;
 	else if(event.keyCode == 38) this.key_up = true;
@@ -68,7 +81,6 @@ Game.prototype.onTimer = function(){
 }
 
 let game = new Game();
+
 let timer = setInterval(function(){game.onTimer();},40);
-=======
-// alert("Connected");
->>>>>>> Stashed changes
+

@@ -20,7 +20,7 @@ body {
 }
 
 #gameBoard{
-	background-color: blue;
+	background-image: url("highway_map.png");
 }
 #webcam{
 	background-color: red;
