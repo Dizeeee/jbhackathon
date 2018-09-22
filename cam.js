@@ -1,11 +1,22 @@
-import * as posenet from '@tensorflow-models/posenet';
-import dat from 'dat.gui';
-import Stats from 'stats.js';
-import {drawKeypoints, drawSkeleton, drawBoundingBox} from './demo_util';
+// import dat from 'dat.gui';
+// import Stats from 'stats.js';
+// import {drawKeypoints, drawSkeleton, drawBoundingBox} from './demo_util';
 
-const videoWidth = 300;
-const videoHeight = 300;
+const videoWidth = 600;
+const videoHeight = 500;
 const stats = new Stats();
+
+function isAndroid() {
+  return /Android/i.test(navigator.userAgent);
+}
+
+function isiOS() {
+  return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+function isMobile() {
+  return isAndroid() || isiOS();
+}
 
 /**
  * Loads a the camera to be used in the demo
