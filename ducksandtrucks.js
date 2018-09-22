@@ -1,3 +1,4 @@
+
 let canvas = document.getElementById("gameBoard");
 let context = canvas.getContext("2d");
 base = new Image();
@@ -9,6 +10,7 @@ function Model(){
 
 	let sprites = [];
 	this.moveDir = null;
+
 
 	/*base = new Image();
 	base.src = "img/duck.png";
@@ -40,6 +42,7 @@ function Controller(model){
 }
 
 Controller.prototype.keyDown = function(event){
+
 	if(event.keyCode == 39) this.key_right = true;
 	else if(event.keyCode == 37) this.key_left = true;
 	else if(event.keyCode == 38) this.key_up = true;
@@ -78,4 +81,6 @@ Game.prototype.onTimer = function(){
 }
 
 let game = new Game();
+
 let timer = setInterval(function(){game.onTimer();},40);
+
